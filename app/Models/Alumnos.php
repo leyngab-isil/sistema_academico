@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Alumnos extends Model
 {
     
-     protected $table = 'alumnos';
+    protected $table = 'alumnos';
 
     protected $fillable = [
         'nombres',
@@ -24,13 +24,13 @@ class Alumnos extends Model
 
     public function matriculas()
     {
-        return $this->hasMany(Matricula::class);
+        return $this->hasMany(Matriculas::class);
     }
 
     public function cursos()
     {
         return $this->belongsToMany(
-            Curso::class,
+            Cursos::class,
             'matriculas',
             'alumno_id',
             'curso_id'

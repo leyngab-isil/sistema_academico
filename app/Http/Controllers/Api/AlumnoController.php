@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Alumnos;
 
 class AlumnoController extends Controller
 {
@@ -12,8 +13,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-         return response()->json(
-            Alumno::all(),
+        return response()->json(
+            Alumnos::all(),
             200
         );
     }
@@ -23,14 +24,14 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'nombres' => 'required|max:100',
             'apellidos' => 'required|max:100',
             'dni' => 'nullable|max:15|unique:alumnos,dni',
             'correo' => 'nullable|email|unique:alumnos,correo',
         ]);
 
-        $alumno = Alumno::create($request->all());
+        $alumno = Alumnos::create($request->all());
 
         return response()->json([
             'message' => 'Alumno registrado correctamente',
@@ -43,7 +44,7 @@ class AlumnoController extends Controller
      */
     public function show(string $id)
     {
-        $alumno = Alumno::find($id);
+        $alumno = Alumnos::find($id);
 
         if (!$alumno) {
             return response()->json([
@@ -59,7 +60,7 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $alumno = Alumno::find($id);
+        $alumno = Alumnos::find($id);
 
         if (!$alumno) {
             return response()->json([
@@ -87,7 +88,7 @@ class AlumnoController extends Controller
      */
     public function destroy(string $id)
     {
-        $alumno = Alumno::find($id);
+        $alumno = Alumnos::find($id);
 
         if (!$alumno) {
             return response()->json([

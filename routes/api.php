@@ -18,6 +18,7 @@ Route::get('/test', function () {
 
 
 Route::apiResource('alumnos', AlumnoController::class);
+
 Route::get('/alumnos', [AlumnoController::class, 'index']);
 Route::get('/alumnos/{id}', [AlumnoController::class, 'show']);
 Route::post('/alumnos', [AlumnoController::class, 'store']);
