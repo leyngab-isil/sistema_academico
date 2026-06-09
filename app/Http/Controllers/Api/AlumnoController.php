@@ -44,7 +44,7 @@ class AlumnoController extends Controller
      */
     public function show(string $id)
     {
-        $alumno = Alumnos::find($id);
+        $alumno = Alumnos::find($id, '*');
 
         if (!$alumno) {
             return response()->json([
@@ -60,7 +60,7 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $alumno = Alumnos::find($id);
+        $alumno = Alumnos::find($id, '*');
 
         if (!$alumno) {
             return response()->json([
@@ -88,7 +88,7 @@ class AlumnoController extends Controller
      */
     public function destroy(string $id)
     {
-        $alumno = Alumnos::find($id);
+        $alumno = Alumnos::find($id, '*');
 
         if (!$alumno) {
             return response()->json([
