@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profesores;
 use Illuminate\Http\Request;
-use App\Models\Alumnos;
 
-class AlumnoController extends Controller
+class ProfesorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return response()->json(
-            Alumnos::all(),
+         return response()->json(
+            Profesores::all(),
             200
         );
     }
@@ -24,18 +24,19 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $request->validate([
             'nombres' => 'required|max:100',
             'apellidos' => 'required|max:100',
-            'dni' => 'nullable|max:15|unique:alumnos,dni',
-            'correo' => 'nullable|email|unique:alumnos,correo',
+            'especialidad' => 'nullable|max:100',
+            'correo' => 'nullable|max:100|email|unique:profesores,correo',
+            'telefono' => 'nullable|max:20',
         ]);
 
-        $alumno = Alumnos::create($request->all());
+        $profesor = Profesores::create($request->all());
 
         return response()->json([
-            'message' => 'Alumno registrado correctamente',
-            'data' => $alumno
+            'message' => 'Profesor registrado correctamente',
+            'data' => $profesor
         ], 201);
     }
 
@@ -44,15 +45,15 @@ class AlumnoController extends Controller
      */
     public function show(string $id)
     {
-        $alumno = Alumnos::find($id);
+         $profesor = Profesores::find($id);
 
-        if (!$alumno) {
+        if (!$profesor) {
             return response()->json([
-                'message' => 'Alumno no encontrado'
+                'message' => 'Profesor no encontrado'
             ], 404);
         }
 
-        return response()->json($alumno);
+        return response()->json($profesor);
     }
 
     /**
@@ -60,26 +61,27 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $alumno = Alumnos::find($id);
+         $profesor = Profesores::find($id);
 
-        if (!$alumno) {
+        if (!$profesor) {
             return response()->json([
-                'message' => 'Alumno no encontrado'
+                'message' => 'Profesor no encontrado'
             ], 404);
         }
 
         $request->validate([
             'nombres' => 'required|max:100',
             'apellidos' => 'required|max:100',
-            'dni' => 'nullable|max:15|unique:alumnos,dni,' . $id,
-            'correo' => 'nullable|email|unique:alumnos,correo,' . $id,
+            'especialidad' => 'nullable|max:100',
+            'correo' => 'nullable|max:100|email|unique:profesores,correo',
+            'telefono' => 'nullable|max:20',
         ]);
 
-        $alumno->update($request->all());
+        $profesor->update($request->all());
 
         return response()->json([
-            'message' => 'Alumno actualizado correctamente',
-            'data' => $alumno
+            'message' => 'Profesor actualizado correctamente',
+            'data' => $profesor
         ]);
     }
 
@@ -88,18 +90,18 @@ class AlumnoController extends Controller
      */
     public function destroy(string $id)
     {
-        $alumno = Alumnos::find($id);
+        $profesor = Profesores::find($id);
 
-        if (!$alumno) {
+        if (!$profesor) {
             return response()->json([
-                'message' => 'Alumno no encontrado'
+                'message' => 'Profesor no encontrado'
             ], 404);
         }
 
-        $alumno->delete();
+        $profesor->delete();
 
         return response()->json([
-            'message' => 'Alumno eliminado correctamente'
+            'message' => 'Profesor eliminado correctamente'
         ]);
     }
 }

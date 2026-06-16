@@ -19,7 +19,7 @@ class Profesores extends Model
     public function cursos()
     {
         return $this->belongsToMany(
-            Curso::class,
+            Cursos::class,
             'curso_profesor',
             'profesor_id',
             'curso_id'

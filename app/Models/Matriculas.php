@@ -20,11 +20,11 @@ class Matriculas extends Model
 
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class);
+        return $this->belongsTo(Alumnos::class);
     }
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class);
+        return $this->belongsTo(Cursos::class);
     }
 }

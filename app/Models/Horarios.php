@@ -18,6 +18,6 @@ class Horarios extends Model
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class);
+        return $this->belongsTo(Cursos::class);
     }
 }

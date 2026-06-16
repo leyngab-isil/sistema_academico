@@ -16,18 +16,18 @@ class Cursos extends Model
 
     public function horarios()
     {
-        return $this->hasMany(Horario::class);
+        return $this->hasMany(Horarios::class);
     }
 
     public function matriculas()
     {
-        return $this->hasMany(Matricula::class);
+        return $this->hasMany(Matriculas::class);
     }
 
     public function alumnos()
     {
         return $this->belongsToMany(
-            Alumno::class,
+            Alumnos::class,
             'matriculas',
             'curso_id',
             'alumno_id'
@@ -37,7 +37,7 @@ class Cursos extends Model
     public function profesores()
     {
         return $this->belongsToMany(
-            Profesor::class,
+            Profesores::class,
             'curso_profesor',
             'curso_id',
             'profesor_id'
