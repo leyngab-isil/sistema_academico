@@ -35,7 +35,8 @@ class AlumnoController extends Controller
 
         return response()->json([
             'message' => 'Alumno registrado correctamente',
-            'data' => $alumno
+            'data' => $alumno,
+            'status' => true
         ], 201);
     }
 

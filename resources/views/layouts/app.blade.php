@@ -38,7 +38,7 @@
                             <a class="nav-link" href="{{ url('/alumnos') }}">{{ __('Alumnos') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Profesore') }}</a>
+                            <a class="nav-link" href="{{ url('/profesores') }}">{{ __('Profesores') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Cursos') }}</a>
@@ -95,5 +95,7 @@
             @yield('content')
         </main>
     </div>
+    @yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -73,7 +73,7 @@ class ProfesorController extends Controller
             'nombres' => 'required|max:100',
             'apellidos' => 'required|max:100',
             'especialidad' => 'nullable|max:100',
-            'correo' => 'nullable|max:100|email|unique:profesores,correo',
+            'correo' => 'nullable|max:100|email|unique:profesores,correo,' . $id,
             'telefono' => 'nullable|max:20',
         ]);
 

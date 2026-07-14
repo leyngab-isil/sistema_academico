@@ -3,18 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/nosotros', function () {
-    return view('nosotros');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::redirect('/home', '/');
 
 Route::get('/alumnos', function(){
     return view('alumnos.index');
+});
+
+Route::get('/profesores', function(){
+    return view('profesores.index');
 });
