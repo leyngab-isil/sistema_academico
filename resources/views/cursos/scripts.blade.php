@@ -1,68 +1,62 @@
 <script>
-    const API = '/api/alumnos'
+    const API = '/api/cursos'
 
     document.addEventListener(
         'DOMContentLoaded',
-        listarAlumnos()
+        listarCursos()
     )
 
-    async function listarAlumnos() {
+    async function listarCursos() {
         const response = await fetch(API)
-        const alumnos = await response.json()
+        const cursos = await response.json()
 
-        let bodyAlumnos = document.getElementById('tbody-alumnos')
+        let bodyCursos = document.getElementById('tbody-cursos')
         let html = '';
 
-        alumnos.forEach(alumno => {
+        cursos.forEach(curso => {
             html += `
                 <tr>
                     <td>
-                        ${alumno.nombres}
+                        ${curso.nombre_curso}
                     </td>
                     <td>
-                        ${alumno.apellidos}
+                        ${curso.descripcion}
                     </td>
                     <td>
-                        ${alumno.dni}
+                        ${curso.creditos}
                     </td>
                     <td>
-                        ${alumno.correo}
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" onclick="editarAlumno(${alumno.id})"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger" onclick="eliminarAlumno(${alumno.id})"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="btn btn-primary" onclick="editarCurso(${curso.id})"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn btn-danger" onclick="eliminarCurso(${curso.id})"><i class="fa-solid fa-trash-can"></i></button>
                     </td>
                 </tr>
             `
         })
-        bodyAlumnos.innerHTML = html
+        bodyCursos.innerHTML = html
     }
 
-    function nuevoAlumno(){
-        document.getElementById("tituloModal").innerHTML="Nuevo Alumno";
-        document.getElementById("formAlumno").reset();
+    function nuevoCurso(){
+        document.getElementById("tituloModal").innerHTML="Nuevo Curso";
+        document.getElementById("formCurso").reset();
         document.getElementById("id").value="";
     }
 
-    async function editarAlumno(id){
+    async function editarCurso(id){
         
         const response = await fetch(`${API}/${id}`)
-        const alumno = await response.json()
+        const curso = await response.json()
+        console.log(curso)
+        document.getElementById("tituloModal").innerHTML = "Editar Curso";
+        document.getElementById("id").value = curso.id;
+        document.getElementById("nombre_curso").value = curso.nombre_curso;
+        document.getElementById("descripcion").value = curso.descripcion;
+        document.getElementById("creditos").value = curso.creditos;
 
-        document.getElementById("tituloModal").innerHTML = "Editar Alumno";
-        document.getElementById("id").value = alumno.id;
-        document.getElementById("nombres").value = alumno.nombres;
-        document.getElementById("apellidos").value = alumno.apellidos;
-        document.getElementById("dni").value = alumno.dni;
-        document.getElementById("correo").value = alumno.correo;
-        document.getElementById("fecha_nacimiento").value = alumno.fecha_nacimiento? alumno.fecha_nacimiento.split("T")[0] : null;
-        document.getElementById("telefono").value = alumno.telefono;
-
-        new bootstrap.Modal(document.getElementById("modalAlumno")).show();
+        new bootstrap.Modal(document.getElementById("modalCurso")).show();
     }
 
     //Formulario para envair los datos para crear o editar
-    let formulario = document.getElementById("formAlumno")
+    let formulario = document.getElementById("formCurso")
     formulario.addEventListener("submit", async function (e) {
         e.preventDefault();
         
@@ -88,14 +82,14 @@
             formulario.reset();
             document.activeElement.blur();
             const modal = bootstrap.Modal.getOrCreateInstance(
-                document.getElementById("modalAlumno")
+                document.getElementById("modalCurso")
             );
             modal.hide();
-            listarAlumnos();
+            listarCursos();
         }
     })
 
-    async function eliminarAlumno(id) {
+    async function eliminarCurso(id) {
 
         const result = await Swal.fire({
             title: "¿Estás seguro(a)?",
@@ -118,7 +112,7 @@
 
             const resultado = await response.json();
 
-            listarAlumnos();
+            listarCursos();
 
             await Swal.fire({
                 title: "¡Eliminado!",

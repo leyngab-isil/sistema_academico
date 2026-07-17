@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalProfesor" tabindex="-1" aria-labelledby="crearProfesorLabel" aria-hidden="true">
+<div class="modal fade" id="modalProfesor" tabindex="-1" aria-labelledby="modalProfesorLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form id="formProfesor">
             <div class="modal-content">

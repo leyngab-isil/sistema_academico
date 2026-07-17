@@ -16,14 +16,14 @@ class Profesores extends Model
         'telefono',
     ];
 
-    public function cursos()
-    {
-        return $this->belongsToMany(
-            Cursos::class,
-            'curso_profesor',
-            'profesor_id',
-            'curso_id'
-        );
-    }
+    // public function cursos()
+    // {
+    //     return $this->belongsToMany(
+    //         Cursos::class,
+    //         'curso_profesor',
+    //         'profesor_id',
+    //         'curso_id'
+    //     );
+    // }
 
 }

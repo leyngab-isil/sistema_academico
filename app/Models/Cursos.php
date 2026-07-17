@@ -34,13 +34,13 @@ class Cursos extends Model
         );
     }
 
-    public function profesores()
-    {
-        return $this->belongsToMany(
-            Profesores::class,
-            'curso_profesor',
-            'curso_id',
-            'profesor_id'
-        );
-    }
+    // public function profesores()
+    // {
+    //     return $this->belongsToMany(
+    //         Profesores::class,
+    //         'curso_profesor',
+    //         'curso_id',
+    //         'profesor_id'
+    //     );
+    // }
 }

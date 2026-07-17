@@ -41,7 +41,7 @@
                             <a class="nav-link" href="{{ url('/profesores') }}">{{ __('Profesores') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Cursos') }}</a>
+                            <a class="nav-link" href="{{ url('/cursos') }}">{{ __('Cursos') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Horarios') }}</a>

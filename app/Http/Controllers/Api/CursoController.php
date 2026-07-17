@@ -43,19 +43,22 @@ class CursoController extends Controller
      */
     public function show(string $id)
     {
-        $curso = Cursos::with(['horarios', 'matriculas'])->find($id);
-
+        // $curso = Cursos::with(['horarios', 'matriculas'])->find($id);
+        $curso = Cursos::find($id);
+        
         if (!$curso) {
             return response()->json([
                 'message' => 'curso no encontrado'
             ], 404);
         }
 
-        return response()->json([
-            'data' => $curso,
-            'cantidad_horarios' => $curso->horarios->count(),
-            'cantidad_matriculas' => $curso->matriculas->count()
-        ]);
+        return response()->json($curso);
+
+        // return response()->json([
+        //     'data' => $curso
+        //     'cantidad_horarios' => $curso->horarios->count(),
+        //     'cantidad_matriculas' => $curso->matriculas->count()
+        // ]);
     }
 
     /**
@@ -92,8 +95,8 @@ class CursoController extends Controller
     {
         $curso = Cursos::find($id);
 
-        $horarios = $curso->horarios()->count();
-        $matriculas = $curso->matriculas()->count();
+        // $horarios = $curso->horarios()->count();
+        // $matriculas = $curso->matriculas()->count();
 
         if (!$curso) {
             return response()->json([
@@ -101,12 +104,12 @@ class CursoController extends Controller
             ], 404);
         }
 
-         if ($horarios > 0 || $matriculas > 0) {
-            return response()->json([
-                'message' => "El curso tiene {$horarios} horarios asociados y {$matriculas} matriculas.",
-                'requires_confirmation' => true
-            ], 409);
-        }
+        //  if ($horarios > 0 || $matriculas > 0) {
+        //     return response()->json([
+        //         'message' => "El curso tiene {$horarios} horarios asociados y {$matriculas} matriculas.",
+        //         'requires_confirmation' => true
+        //     ], 409);
+        // }
 
         $curso->delete();
 

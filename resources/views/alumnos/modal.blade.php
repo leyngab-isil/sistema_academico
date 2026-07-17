@@ -10,15 +10,15 @@
                     <input type="hidden" id="id">
                     <div class="mb-3">
                         <label for="nombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Luis" required>
+                        <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Luis" maxlength="25" required>
                     </div>
                     <div class="mb-3">
                         <label for="apellidos" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Torres" required>
+                        <input type="text" class="form-control" id="apellidos" name="apellidos" maxlength="25" placeholder="Torres" required>
                     </div>
                     <div class="mb-3">
                         <label for="dni" class="form-label">DNI</label>
-                        <input type="text" class="form-control" id="dni" name="dni" placeholder="12345678">
+                        <input type="text" class="form-control" id="dni" name="dni" minlength="8" maxlength="8" placeholder="12345678">
                     </div>
                     <div class="mb-3">
                         <label for="correo" class="form-label">Correo electrónico</label>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+                        <input type="date" class="form-control" id="fecha_nacimiento" max="2008-01-01" name="fecha_nacimiento">
                     </div>
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Celular</label>
